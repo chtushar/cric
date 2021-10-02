@@ -6,12 +6,15 @@ import (
 	"cricli/utils"
 	"encoding/json"
 	"fmt"
+	"os"
 
 	xj "github.com/basgys/goxml2json"
 )
 
+const LIVE_SCORES = "http://static.espncricinfo.com/rss/livescores.xml"
+
 func main() {
-	xmlBytes, _ := utils.GetXML("http://static.espncricinfo.com/rss/livescores.xml")
+	xmlBytes, _ := utils.GetXML(LIVE_SCORES)
 	data := bytes.NewReader(xmlBytes)
 	js, err := xj.Convert(data)
 
@@ -26,8 +29,8 @@ func main() {
 	} else {
 		// _ = ioutil.WriteFile("test,json", json.Bytes(), 0644)
 		// fmt.Println(items)
-		for _, match := range items {
-			fmt.Println(match.Title)
-		}
+		team := os.Args[1]
+
+		utils.GetScore(team, items)
 	}
 }

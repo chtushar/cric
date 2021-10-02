@@ -35,3 +35,9 @@ func ExitGracefully(err error) {
 	fmt.Fprintf(os.Stderr, "error: %v\n", err)
 	os.Exit(1)
 }
+
+func GetScore(team string, items []model.Item) {
+	for _, match := range items {
+		fmt.Println(match.Title)
+	}
+}
