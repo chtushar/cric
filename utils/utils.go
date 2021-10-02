@@ -60,8 +60,10 @@ func GetScore(teamAlias string, items []model.Item) {
 		ExitGracefully(err)
 	}
 
-	fmt.Println(team)
 	for _, match := range items {
-		fmt.Println(match.Title)
+		matchTitleInLowercase := strings.ToLower(match.Title)
+		if strings.Contains(matchTitleInLowercase, team) {
+			fmt.Println(match.Title)
+		}
 	}
 }
