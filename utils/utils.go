@@ -1,11 +1,15 @@
 package utils
 
 import (
+	"cricli/data"
 	"cricli/model"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
+
+	jq "github.com/antchfx/jsonquery"
 )
 
 func GetXML(url string) ([]byte, error) {
@@ -36,7 +40,27 @@ func ExitGracefully(err error) {
 	os.Exit(1)
 }
 
-func GetScore(team string, items []model.Item) {
+func getTeamName(teamAlias string) (name string, err error) {
+	doc, err := jq.Parse(strings.NewReader(data.Teams))
+	if err != nil {
+		return "", err
+	}
+	if n := jq.FindOne(doc, "*/" + teamAlias); n != nil {
+		return n.InnerText(), nil
+	} else {
+		return "", fmt.Errorf("Couldn't find the team")
+	}
+}
+
+func GetScore(teamAlias string, items []model.Item) {
+
+	team, err := getTeamName(teamAlias)
+
+	if err != nil {
+		ExitGracefully(err)
+	}
+
+	fmt.Println(team)
 	for _, match := range items {
 		fmt.Println(match.Title)
 	}

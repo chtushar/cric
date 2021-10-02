@@ -1,4 +1,6 @@
-{
+package data
+
+var Teams string = `{
   "nations": {
     "ind": "india",
     "aus": "australia",
@@ -24,5 +26,4 @@
     "rcb": "royal challengers bangalore",
     "pbks": "punjab kings"
   }
-}
-
+}`
