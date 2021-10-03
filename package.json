@@ -1,6 +1,6 @@
 {
   "name": "cric-score",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0",
   "description": "Get cricket scores directly in your terminal",
   "scripts": {
     "prebuild": "rm -rf bin && mkdir bin",
