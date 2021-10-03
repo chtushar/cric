@@ -3,7 +3,8 @@
   "version": "0.1.0-beta.1",
   "description": "Get cricket scores directly in your terminal",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "rm -rf bin && mkdir bin",
+    "build": "go build -o ./bin/cricli"
   },
   "repository": {
     "type": "git",
@@ -15,7 +16,7 @@
     "score"
   ],
   "bin": "./bin/cricli",
-  "author": "Tushar Choudhari (choudharit23@gmail.com)",
+  "author": "Tushar Choudhari<choudharit23@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/chtushar/cricli/issues"
