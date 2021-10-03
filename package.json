@@ -1,0 +1,24 @@
+{
+  "name": "cricli",
+  "version": "0.1.0-beta.1",
+  "description": "Get cricket scores directly in your terminal",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chtushar/cricli.git"
+  },
+  "keywords": [
+    "cricket",
+    "cli",
+    "score"
+  ],
+  "bin": "./bin/cricli",
+  "author": "Tushar Choudhari (choudharit23@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chtushar/cricli/issues"
+  },
+  "homepage": "https://github.com/chtushar/cricli#readme"
+}
