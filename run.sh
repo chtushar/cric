@@ -1,3 +1,3 @@
-go build -o ./bin/cric-score
-./bin/cric-score rcb
+go build -o ./bin/cric
+./bin/cric rcb
 

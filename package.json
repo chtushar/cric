@@ -1,25 +1,25 @@
 {
-  "name": "cric-score",
+  "name": "cric",
   "version": "0.1.0",
   "description": "Get cricket scores directly in your terminal",
   "scripts": {
     "prebuild": "rm -rf bin && mkdir bin",
-    "build": "go build -o ./bin/cric-score"
+    "build": "go build -o ./bin/cric"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chtushar/cric-score.git"
+    "url": "git+https://github.com/chtushar/cric.git"
   },
   "keywords": [
     "cricket",
     "cli",
     "score"
   ],
-  "bin": "./bin/cric-score",
+  "bin": "./bin/cric",
   "author": "Tushar Choudhari<choudharit23@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/chtushar/cric-score/issues"
+    "url": "https://github.com/chtushar/cric/issues"
   },
-  "homepage": "https://github.com/chtushar/cric-score#readme"
+  "homepage": "https://github.com/chtushar/cric#readme"
 }

@@ -1,4 +1,4 @@
-# cric-score
+# cric
 
 > Get cricket score right in your terminal.
 
@@ -10,7 +10,7 @@ following command with your team's initial.
 For ex: India: `ind`, Australia: `aus`, England: `eng`
 
 ```bash
-npx cric-score ind
+npx cric ind
 ```
 
 ## Supported teams
@@ -42,7 +42,7 @@ npx cric-score ind
   8. Punjab Kings: `pbks`
 
 Can't find the team you are looking for?
-Do send in a PR adding a team in [this file](https://github.com/chtushar/cric-score/blob/main/data/data.go)
+Do send in a PR adding a team in [this file](https://github.com/chtushar/cric/blob/main/data/data.go)
 
 ## Contribution Guide
 
