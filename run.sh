@@ -1,3 +1,3 @@
 go build -o ./bin/cric
-./bin/cric rcb
+./bin/cric srh
 

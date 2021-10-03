@@ -100,10 +100,16 @@ func getPlayersAndOvers(details string, score *model.Score) {
 	playersAndOvers = strings.Trim(playersAndOvers, ")")
 
 	extracted := strings.Split(playersAndOvers, ", ")
-
-	*&score.Overs = extracted[0]
-	*&score.Players.Batters = extracted[1:3]
-	*&score.Players.Bowler = extracted[3]
+	if len(extracted) >= 3{
+		*&score.Overs = extracted[0]
+		if len(extracted) == 4 {
+			*&score.Players.Batters = extracted[1:3]
+			*&score.Players.Bowler = extracted[3]
+		} else if len(extracted) == 3 {
+			*&score.Players.Batters = extracted[1:2]
+			*&score.Players.Bowler = extracted[2]
+		}
+	}
 }
 func PrintMatchDetails(match model.Item) {
 	score := &model.Score{}
@@ -119,13 +125,22 @@ func PrintMatchDetails(match model.Item) {
 	}
 
 	fmt.Printf("\n\n" + "⚔️  " + chalk.Bold.TextStyle(match.Title) + "\n\n")
-	fmt.Printf(chalk.Magenta.Color("Overs: ") + chalk.Bold.TextStyle(score.Overs) + "\n")
-	fmt.Printf(chalk.Magenta.Color("Batters: "))
-	for i := range score.Players.Batters {
-		fmt.Printf(chalk.Bold.TextStyle(score.Players.Batters[i]) + "\t")
+
+	if len(score.Overs) > 0 {
+		fmt.Printf(chalk.Magenta.Color("Overs: ") + chalk.Bold.TextStyle(score.Overs) + "\n")
 	}
-	fmt.Printf("\n" + chalk.Magenta.Color("Bowler: "))
-	fmt.Printf(chalk.Bold.TextStyle(score.Players.Bowler) + "\n\n")
+
+	if len(score.Players.Batters) >= 1 {
+		fmt.Printf(chalk.Magenta.Color("Batters: "))
+		for i := range score.Players.Batters {
+			fmt.Printf(chalk.Bold.TextStyle(score.Players.Batters[i]) + "\t")
+		}
+	}
+
+	if len(score.Players.Bowler) > 0 {
+		fmt.Printf("\n" + chalk.Magenta.Color("Bowler: "))
+		fmt.Printf(chalk.Bold.TextStyle(score.Players.Bowler) + "\n\n")
+	}
 
 	for i := 0; i < len(match.Title)+3; i++ {
 		fmt.Printf("-")
