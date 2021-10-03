@@ -1,8 +1,8 @@
 package utils
 
 import (
-	"cricli/data"
-	"cricli/model"
+	"cric-score/data"
+	"cric-score/model"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -112,7 +112,7 @@ func PrintMatchDetails(match model.Item) {
 	details, _ := GetHtmlTitle(htmlData.Body)
 	getPlayersAndOvers(details, score)
 
-	fmt.Println(chalk.Yellow.Color(chalk.Bold.TextStyle("🏏💻 Cricli")))
+	fmt.Println(chalk.Yellow.Color(chalk.Bold.TextStyle("🏏💻 cric-score")))
 
 	for i := 0; i < len(match.Title)+3; i++ {
 		fmt.Printf("-")
@@ -139,7 +139,7 @@ func GetScore(teamAlias string, items []model.Item) {
 	team, err := getTeamName(teamAlias)
 
 	if err != nil {
-		fmt.Printf(chalk.Magenta.Color("Sorry, Cricli couldn't find the team you are looking for but here are some of the live scores. Hope it helps. 😬\n\n\n"))
+		fmt.Printf(chalk.Magenta.Color("Sorry, cric-score couldn't find the team you are looking for but here are some of the live scores. Hope it helps. 😬\n\n\n"))
 
 		PrintLiveMatches(items)
 		os.Exit(1)

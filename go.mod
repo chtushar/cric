@@ -1,4 +1,4 @@
-module cricli
+module cric-score
 
 go 1.16
 

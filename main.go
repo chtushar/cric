@@ -2,8 +2,8 @@ package main
 
 import (
 	"bytes"
-	"cricli/model"
-	"cricli/utils"
+	"cric-score/model"
+	"cric-score/utils"
 	"encoding/json"
 	"fmt"
 	"os"
