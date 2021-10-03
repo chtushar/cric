@@ -15,13 +15,13 @@ a {
 }
 
 pre {
-  background-color: #e5e5e5;
+  background-color: #ffffd7;
   padding: 16px;
   border-radius: 8px;
 }
 
 code {
- background-color: #e5e5e5;
+  background-color: #ffffd7;
   padding: 2px 4px;
   border-radius: 2px;
 }
@@ -32,23 +32,34 @@ li {
 
 body {
   padding: 32px 240px;
+  background-color: #fffff2;
 }
 
-@media (max-width: 1024px){
+.hero {
+  height: 40vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.subheading {
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
   body {
     padding: 32px 120px;
   }
 }
 
-
-@media (max-width: 768px){
+@media (max-width: 768px) {
   body {
     padding: 32px 72px;
   }
 }
 
-
-@media (max-width: 450px){
+@media (max-width: 450px) {
   body {
     padding: 32px 48px;
   }
