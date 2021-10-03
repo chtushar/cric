@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"regexp"
 	"strings"
 
 	jq "github.com/antchfx/jsonquery"
@@ -55,11 +56,11 @@ func getTeamName(teamAlias string) (name string, err error) {
 	}
 }
 
-func PrintLiveMatches(items []model.Item){
+func PrintLiveMatches(items []model.Item) {
 	for _, match := range items {
-			if strings.Contains(match.Title, "*") {
-				fmt.Printf("🏏 " + match.Title + "\n\n")
-			}
+		if strings.Contains(match.Title, "*") {
+			fmt.Printf("🏏 " + match.Title + "\n\n")
+		}
 	}
 }
 
@@ -91,13 +92,32 @@ func GetHtmlTitle(r io.Reader) (string, bool) {
 	return traverse(doc)
 }
 
-func PrintMatchDetails(match model.Item){
-	htmlData, _ := http.Get(match.Link)
-	details, _ := GetHtmlTitle(htmlData.Body);
+func getPlayersAndOvers(details string, score *model.Score) {
+	re := regexp.MustCompile(`\((.*?)\)`)
+	playersAndOvers := re.FindString(details)
 
-	fmt.Println(details);
-	/////////////////////////////
-	fmt.Println(match.Title);
+	playersAndOvers = strings.Trim(playersAndOvers, "(")
+	playersAndOvers = strings.Trim(playersAndOvers, ")")
+
+	extracted := strings.Split(playersAndOvers, ", ")
+
+	*&score.Overs = extracted[0]
+	*&score.Players.Batters = extracted[1:3]
+	*&score.Players.Bowler = extracted[3]
+}
+func PrintMatchDetails(match model.Item) {
+	score := &model.Score{}
+
+	htmlData, _ := http.Get(match.Link)
+	details, _ := GetHtmlTitle(htmlData.Body)
+	getPlayersAndOvers(details, score)
+
+	fmt.Printf("\n" + "⚔️  " + chalk.Green.Color(match.Title) + "\n\n")
+	fmt.Printf(chalk.Magenta.Color("Overs: ") + score.Overs + "\n\n")
+	fmt.Println(chalk.Magenta.Color("Batters:"))
+	fmt.Printf(score.Players.Batters[0] + "\t" + score.Players.Batters[1] + "\n\n")
+	fmt.Println(chalk.Magenta.Color("Bowler:"))
+	fmt.Println(score.Players.Bowler)
 }
 
 func GetScore(teamAlias string, items []model.Item) {
@@ -105,16 +125,16 @@ func GetScore(teamAlias string, items []model.Item) {
 	team, err := getTeamName(teamAlias)
 
 	if err != nil {
-		fmt.Printf(chalk.Magenta.Color("Sorry, Cricli couldn't find the team you are looking for but here are some of the live scores. Hope it helps. 😬\n\n\n"));
+		fmt.Printf(chalk.Magenta.Color("Sorry, Cricli couldn't find the team you are looking for but here are some of the live scores. Hope it helps. 😬\n\n\n"))
 
-		PrintLiveMatches(items);
+		PrintLiveMatches(items)
 		os.Exit(1)
 	}
 
 	for _, match := range items {
 		matchTitleInLowercase := strings.ToLower(match.Title)
 		if strings.Contains(matchTitleInLowercase, team) {
-			PrintMatchDetails(match);
+			PrintMatchDetails(match)
 		}
 	}
 }
