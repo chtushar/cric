@@ -8,7 +8,7 @@ const Hero = () => {
       </Head>
       <h1>🏏💻 Cric</h1>
       <h4 className='subheading'>
-        For all the cricket lovers who happens to be on the terminal all the
+        For all the cricket lovers who happen to be on the terminal all the
         time.
       </h4>
     </div>
