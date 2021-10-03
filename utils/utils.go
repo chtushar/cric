@@ -112,12 +112,26 @@ func PrintMatchDetails(match model.Item) {
 	details, _ := GetHtmlTitle(htmlData.Body)
 	getPlayersAndOvers(details, score)
 
-	fmt.Printf("\n" + "⚔️  " + chalk.Green.Color(match.Title) + "\n\n")
-	fmt.Printf(chalk.Magenta.Color("Overs: ") + score.Overs + "\n\n")
-	fmt.Println(chalk.Magenta.Color("Batters:"))
-	fmt.Printf(score.Players.Batters[0] + "\t" + score.Players.Batters[1] + "\n\n")
-	fmt.Println(chalk.Magenta.Color("Bowler:"))
-	fmt.Println(score.Players.Bowler)
+	fmt.Println(chalk.Yellow.Color(chalk.Bold.TextStyle("🏏💻 Cricli")))
+
+	for i := 0; i < len(match.Title)+3; i++ {
+		fmt.Printf("-")
+	}
+
+	fmt.Printf("\n\n" + "⚔️  " + chalk.Bold.TextStyle(match.Title) + "\n\n")
+	fmt.Printf(chalk.Magenta.Color("Overs: ") + chalk.Bold.TextStyle(score.Overs) + "\n")
+	fmt.Printf(chalk.Magenta.Color("Batters: "))
+	for i := range score.Players.Batters {
+		fmt.Printf(chalk.Bold.TextStyle(score.Players.Batters[i]) + "\t")
+	}
+	fmt.Printf("\n" + chalk.Magenta.Color("Bowler: "))
+	fmt.Printf(chalk.Bold.TextStyle(score.Players.Bowler) + "\n\n")
+
+	for i := 0; i < len(match.Title)+3; i++ {
+		fmt.Printf("-")
+	}
+	fmt.Printf("\n\n")
+
 }
 
 func GetScore(teamAlias string, items []model.Item) {
