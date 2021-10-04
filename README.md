@@ -2,7 +2,9 @@
 
 > Get cricket score right in your terminal.
 
-## How to use?
+![Kapture 2021-10-04 at 20 18 55](https://user-images.githubusercontent.com/33191895/135903455-d30ddca1-09e2-40e1-b6a0-308150ced662.gif)
+
+## How to use?!
 
 Make sure you have Node.js installed on your machine and just type the
 following command with your team's initial.
